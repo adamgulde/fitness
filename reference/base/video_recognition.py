@@ -1,5 +1,4 @@
 from math import sqrt
-from operator import index
 import cv2
 import mediapipe as mp
 mp_drawing = mp.solutions.drawing_utils
