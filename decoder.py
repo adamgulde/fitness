@@ -9,3 +9,5 @@ def decode(dataURL):
     #     img_data = data.readline() 
     # with open("imageToSave.png", "wb") as save:
     #     save.write(base64.b64decode(img_data)) ### decodes and saves into imageToSave.png
+
+decode(input())
