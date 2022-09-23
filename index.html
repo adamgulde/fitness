@@ -21,11 +21,8 @@
         
         <h1>Webpage Camera Testing</h1>
         <p>Smaller text</p>
-        <div id="container">
-            <video autoplay="true" id="videoElement"></video>
-        </div>
-        <button id="start-camera">Start Camera</button>
         <video id="video" width="320" height="240" autoplay></video>
+        <button id="start-camera">Start Camera</button>
         <canvas id="canvas" width="320" height="240"></canvas>
         <p id="data_text">Empty</p>
         <script>
@@ -37,16 +34,18 @@
             let canvas = document.querySelector("#canvas");
             let data_paragraph = document.querySelector("#data_text");
 
-            setInterval(function() {
+            data_paragraph.innerHTML = 'Empty'
+            
+
+            camera_button.addEventListener('click', async function() {
+                let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+                video.srcObject = stream;
+                setInterval(function() {
                 canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
                 let converted_image = getBase64StringFromDataURL(canvas.toDataURL('image/jpeg'));
                 // data url of the image
                 data_paragraph.innerHTML = converted_image
             }, 30);
-
-            camera_button.addEventListener('click', async function() {
-                let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-                video.srcObject = stream;
             });
             
         </script>
