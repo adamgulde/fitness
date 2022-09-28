@@ -1,5 +1,7 @@
 ### File to create a locally (first) camera hosting system, then a web hosted system. 
 # Python 3 server example
+
+### USE FOR LOCAL HOST TESTING. NOW UP ON adamgulde.github.io
 import http.server
 import socketserver
 
