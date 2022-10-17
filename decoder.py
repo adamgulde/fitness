@@ -1,11 +1,14 @@
+### This module decodes the dataURL posted on the webpage into an 
+### image file, decoding it from base64. 
+
 import base64
 
 def decode(dataURL, mode:int, num=0):
     if mode==1:
-        with open("data/image_decoded.png", "wb") as save:
+        with open("data_conv/image_decoded.png", "wb") as save:
             save.write(base64.b64decode(dataURL))
     if mode==2: 
-        with open(f"data/image_decoded{num}.png", "wb") as save:
+        with open(f"data_conv/image_decoded{num}.png", "wb") as save:
             save.write(base64.b64decode(dataURL))
     else: 
         print('\nDECODE:\nUnhandled exception- bad "mode" input\n\n')

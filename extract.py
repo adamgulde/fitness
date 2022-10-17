@@ -5,8 +5,8 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from decoder import decode
 import subprocess
+import ui
 import os
-from ui import create_ui
 
 import platform
 if(platform.platform().startswith('macOS')):
@@ -27,11 +27,13 @@ def initialize():
     driver.get("https://adamgulde.github.io/")
     start_button = driver.find_element('id', 'start-camera')
     start_button.click()
+    if(not os.path.exists('data_raw')): os.makedirs('data_raw')
+    if(not os.path.exists('data_conv')): os.makedirs('data_conv')
     ### Wait for user confirmation...
     while(True):
         with open('cmds.txt', 'r') as cmd:
             if cmd.readline() == 'start': break
-    os.makedirs('')
+    
     
 def verification():
     ### VERIFICATION BLOCK
@@ -47,7 +49,9 @@ def image_loop():
     while(True):
         with open('cmds.txt', 'r') as cmd:
             if cmd.readline() != 'stop':
-                decode(driver.find_element('id', 'data_text').text, 2, count)
+                raw_data = driver.find_element('id', 'data_text').text
+                with open(f'data_raw/data_raw{count}', 'w') as f: f.write(raw_data)
+                decode(raw_data, 2, count)
             else: break
         count+=1
 
