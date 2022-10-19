@@ -29,7 +29,6 @@
         <button id="start-camera">Start Camera</button>
         <canvas id="canvas" width="320" height="240"></canvas>
         <p id="data_text">Empty</p>
-        <canvas class="output_canvas" width="1280px" height="720px"></canvas>
         <div class="landmark-grid-container"></div>
         <script>
             const getBase64StringFromDataURL = (dataURL) =>
@@ -52,6 +51,7 @@
             });
         
         </script>
+        <canvas class="output_canvas" width="640px" height="360px"></canvas>
         <script src="" async defer></script>
         <script type="module">
             const videoElement = document.querySelector("#video");
@@ -68,13 +68,13 @@
             
               canvasCtx.save();
               canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-              canvasCtx.drawImage(results.segmentationMask, 0, 0,
-                                  canvasElement.width, canvasElement.height);
+              // canvasCtx.drawImage(results.segmentationMask, 0, 0,
+              //                    canvasElement.width, canvasElement.height);
             
               // Only overwrite existing pixels.
-              canvasCtx.globalCompositeOperation = 'source-in';
-              canvasCtx.fillStyle = '#00FF00';
-              canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+                canvasCtx.globalCompositeOperation = 'source-in';
+                canvasCtx.fillStyle = '#00FF00';
+                canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
             
               // Only overwrite missing pixels.
               canvasCtx.globalCompositeOperation = 'destination-atop';
@@ -108,8 +108,8 @@
                 onFrame: async () => {
                     await pose.send({image: videoElement});
                 },
-                width: 1280,
-                height: 720
+                width: 640,
+                height: 360
                 });
                 camera.start();
             </script>
