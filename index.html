@@ -24,12 +24,16 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <h1>Webpage Camera Testing</h1>
-        <p>Smaller text</p>
+        <p>Larger output canvas is better for close up shots duhhh</p>
         <video id="video" width="320" height="240" autoplay></video>
-        <button id="start-camera">Start Camera</button>
+        <canvas class="output_canvas" width="320" height="240"></canvas>
         <canvas id="canvas" width="320" height="240"></canvas>
+        <img src="pose_tracking_full_body_landmarks.png" alt="Pose reference image">
+        <button id="start-camera">Start Camera</button>
+        
         <p id="data_text">Empty</p>
         <div class="landmark-grid-container"></div>
+        
         <script>
             const getBase64StringFromDataURL = (dataURL) =>
                 dataURL.replace('data:', '').replace(/^.+,/, '');
@@ -51,7 +55,7 @@
             });
         
         </script>
-        <canvas class="output_canvas" width="640px" height="360px"></canvas>
+        
         <script src="" async defer></script>
         <script type="module">
             const videoElement = document.querySelector("#video");
@@ -108,8 +112,8 @@
                 onFrame: async () => {
                     await pose.send({image: videoElement});
                 },
-                width: 640,
-                height: 360
+                width: 320,
+                height: 240
                 });
                 camera.start();
             </script>
