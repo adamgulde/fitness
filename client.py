@@ -3,6 +3,9 @@ import socket
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect(('10.13.0.16', 3131))
 
+def sendlength(senditem):
+    return str(len(senditem)) + ' '
+
 image_to_upload = open('photo.jpg', 'rb')
 image_chunk = image_to_upload.read(2048)
 while image_chunk:
